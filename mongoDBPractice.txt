@@ -1,0 +1,45 @@
+use onlineshoppingportal
+db.createCollection("Customer")
+db.createCollection("Orders")
+db.createCollection("Vendors")
+create  a database onlineshoppingportal
+
+create collections 
+
+Customer (customername,customeremail,customermobno,customerwallet)
+Address (customercity,customerpincode,customeraddress)
+Orders(orderstatus,orderamount)
+Vendors/Sellers (vendorname,vendoremail,vendormobno,vendorwallet)
+Products(productname,productcategory,productprice)
+
+insert  documents into above collections
+
+find all customers whose city is 'Delhi'
+find productname,price from products
+find orders where orderstatus is 'pending'
+find all addresses whose pincode is 600012
+=============================================================================
+
+db.createCollection("Products")
+
+db.Customer.insertMany([{customername:"Ram",customeremail:"ram@gmail.com",customermobno:3543543156,customerwallet:5000,customerAddress:{customercity:"Jaipur",customerpincode:325698,customeraddress:"Mansarovar Jaipur"} },
+{customername:"Shyam",customeremail:"shyam@gmail.com",customermobno:8565465554,customerwallet:7000,customerAddress:{customercity:"Delhi",customerpincode:659985,customeraddress:"Noida Dehli"} },
+{customername:"Sonu",customeremail:"sonu@gmail.com",customermobno:5568984412,customerwallet:"2000",customerAddress:{customercity:"Agra",customerpincode:600012,customeraddress:"Agra"} },
+{customername:"Monu",customeremail:"monu@gmail.com",customermobno:5668984412,customerwallet:"5000",customerAddress:{customercity:"Agra",customerpincode:600012,customeraddress:"Agra"} }])
+
+db.Orders.insertMany([{orderstatus:"pending",orderamount:423},{orderstatus:"pending",orderamount:783},{orderstatus:"completed",orderamount:400},{orderstatus:"completed",orderamount:900},{orderstatus:"pending",orderamount:700}])
+
+db.Vendors.insertMany([{vendorname:"Rakesh",vendoremail:"rakesh@gmail.com",vendormobno:6556899865,vendorwallet:10000},
+{vendorname:"Mukesh",vendoremail:"mukesh@gmail.com",vendormobno:6332899865,vendorwallet:20000},
+{vendorname:"Suresh",vendoremail:"suresh@gmail.com",vendormobno:7358899865,vendorwallet:9000}])
+
+db.Products.insertMany([{productname:"chips",productcategory:"food",productprice:423},
+{productname:"donuts",productcategory:"food",productprice:400},{productname:"burger",productcategory:"food",productprice:783}])
+
+ db.Customer.find({"customerAddress.customercity":"Delhi"}).pretty();
+
+  db.Products.find({}, {_id:0, productname:1,productprice:1}).pretty();
+
+ db.Orders.find({orderstatus:"pending"}).pretty();
+s
+ db.Customer.find({"customerAddress.customerpincode":600012}).pretty();
